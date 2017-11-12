@@ -7,7 +7,9 @@ const Router = EmberRouter.extend({
 });
 
 Router.map(function() {
-  this.route('gallery');
+  this.route('gallery', function() {
+    this.route('resource', { path: '*relative_path' })
+  });
 });
 
 export default Router;

@@ -2,11 +2,21 @@
 'use strict';
 
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
+let Funnel = require('broccoli-funnel');
 
 module.exports = function(defaults) {
   let app = new EmberApp(defaults, {
     // Add options here
   });
+
+  app.import('node_modules/materialize-css/dist/css/materialize.css');
+  app.import('node_modules/materialize-css/dist/js/materialize.js');
+
+  let materializeRobotoFont = new Funnel('node_modules/materialize-css/dist/fonts/roboto', {
+      srcDir: '/',
+      include: ['*'],
+      destDir: '/fonts/roboto'
+   });
 
   // Use `app.import` to add additional libraries to the generated
   // output files.
@@ -21,5 +31,5 @@ module.exports = function(defaults) {
   // please specify an object with the list of modules as keys
   // along with the exports of each module as its value.
 
-  return app.toTree();
+  return app.toTree(materializeRobotoFont);
 };
