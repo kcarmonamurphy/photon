@@ -6,7 +6,19 @@ let Funnel = require('broccoli-funnel');
 
 module.exports = function(defaults) {
   let app = new EmberApp(defaults, {
-    // Add options here
+    outputPaths: {
+      app: {
+        html: 'index.html',
+        css: {
+          'app': '/assets/css/photon.css'
+        },
+        js: '/assets/js/photon.js'
+      },
+      vendor: {
+        css: '/assets/css/vendor.css',
+        js: '/assets/js/vendor.js'
+      }
+    }
   });
 
   app.import('node_modules/materialize-css/dist/css/materialize.css');
@@ -15,7 +27,7 @@ module.exports = function(defaults) {
   let materializeRobotoFont = new Funnel('node_modules/materialize-css/dist/fonts/roboto', {
       srcDir: '/',
       include: ['*'],
-      destDir: '/fonts/roboto'
+      destDir: 'assets/fonts/roboto'
    });
 
   // Use `app.import` to add additional libraries to the generated

@@ -1,0 +1,40 @@
+html,
+body,
+.ember-view {
+  	height: 100%;
+  	margin: 0
+}
+
+.ember-view {
+  	display: flex;
+  	flex-flow: column;
+}
+
+header {
+  	flex: 0 1 auto;
+}
+
+main {
+  	display: flex;
+  	flex: 1 1 auto;
+  	padding: 0;
+
+	> .row {
+		margin-bottom:0;
+		width:100%;
+		padding: 0;
+
+		> .col {
+			height:100%;
+			padding: 0;
+		}
+	}
+
+}
+
+#flex-container {
+	display: flex;
+	width:100%;
+	flex-flow: row wrap;
+	justify-content: flex-start;
+}
