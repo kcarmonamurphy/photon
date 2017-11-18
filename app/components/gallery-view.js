@@ -2,6 +2,8 @@ import Component from '@ember/component';
 
 export default Component.extend({
 
+    classNames: ['gallery-view'],
+
     websockets: Ember.inject.service(),
     store: Ember.inject.service(),
 
