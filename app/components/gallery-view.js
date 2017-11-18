@@ -37,7 +37,7 @@ export default Component.extend({
 
     myMessageHandler(event) {
         
-        let { name, description, type, size } = JSON.parse(event.data);
+        let { name, description, type, size, uri } = JSON.parse(event.data);
 
         console.log(name);
 
@@ -49,7 +49,8 @@ export default Component.extend({
                     name: name,
                     description: description,
                     type: type,
-                    size: size
+                    size: size,
+                    uri: uri,
                 },
                 relationships: {}
             }]

@@ -1,0 +1,19 @@
+<figure class="gallery-item" id="item-template" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+
+    <div class="selection-boundary list-js-figure-type">
+        <a class="list-js-href" itemprop="contentUrl" href="{{raw-uri gallery-item.uri}}">
+            <img class="list-js-thumbnail-src" itemprop="thumbnail" src="{{thumbnail-uri gallery-item.uri}}?thumbnail=1"/>
+        </a>
+
+        <figcaption itemprop="caption description" class="list-js-name">{{gallery-item.name}}</figcaption>
+    </div>
+
+    <div class="item-metadata">
+        <div class="list-js-title"></div>
+        <div class="list-js-description"></div>
+        <div class="list-js-create-date"></div>
+    </div>
+
+</figure>
+
+{{yield}}
