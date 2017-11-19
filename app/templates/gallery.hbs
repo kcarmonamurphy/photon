@@ -1,14 +1,20 @@
+{{input value=search}}
+
 <main>
         
     <div class="row">
 
         <div class="col xl9 l8 m7 s12">
 
-            {{ gallery-view model=model }}
+            {{ gallery-view
+            	sortedAndFilteredGalleryItems=sortedAndFilteredGalleryItems
+            }}
 
             <div id="photoswipe-container" class='closed'>
                 
             </div>
+
+            {{myAss}}
 
         </div>
 

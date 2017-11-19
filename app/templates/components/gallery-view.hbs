@@ -1,7 +1,7 @@
 
 <div id="flex-container" class="flex-4 flex-container">
 
-    {{#each model as |gallery-item|}}
+    {{#each sortedAndFilteredGalleryItems as |gallery-item|}}
         {{ gallery-item 
             gallery-item=gallery-item
         }}
