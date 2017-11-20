@@ -1,29 +1,22 @@
-{{input value=search}}
 
-<main>
+<div class="col xl9 l8 m7 s12">
+
+	{{ gallery-controls 
+		search=search
+	}}
+
+    {{ gallery-view
+    	sortedAndFilteredGalleryItems=sortedAndFilteredGalleryItems
+    }}
+
+    <div id="photoswipe-container" class='closed'>
         
-    <div class="row">
-
-        <div class="col xl9 l8 m7 s12">
-
-            {{ gallery-view
-            	sortedAndFilteredGalleryItems=sortedAndFilteredGalleryItems
-            }}
-
-            <div id="photoswipe-container" class='closed'>
-                
-            </div>
-
-            {{myAss}}
-
-        </div>
-
-        <div class="col xl3 l4 m5 hide-on-small-only metadata">
-            
-        </div>
-
     </div>
 
-</main>
+</div>
+
+<div class="col xl3 l4 m5 hide-on-small-only metadata">
+    
+</div>
 
 {{outlet}}
