@@ -3,7 +3,7 @@ import { computed } from  '@ember/object';
 
 export default Component.extend({
 
-    classNames: ['gallery-view'],
+    classNames: ['gallery-view', 'grey', 'darken-4'],
 
     websockets: Ember.inject.service(),
     store: Ember.inject.service(),

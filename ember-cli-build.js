@@ -18,10 +18,12 @@ module.exports = function(defaults) {
         css: '/assets/css/vendor.css',
         js: '/assets/js/vendor.js'
       }
+    },
+    sassOptions: {
+      includePaths: ['node_modules/materialize-css/sass/']
     }
   });
 
-  app.import('node_modules/materialize-css/dist/css/materialize.css');
   app.import('node_modules/materialize-css/dist/js/materialize.js');
 
   let materializeRobotoFont = new Funnel('node_modules/materialize-css/dist/fonts/roboto', {

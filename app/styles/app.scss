@@ -1,8 +1,11 @@
-@import "flex-grid";
-@import "colors";
-@import "structure";
-@import "gallery";
-@import "gallery-controls";
+@import 'materialize/materialize';
+
+@import 'flex-grid';
+@import 'colors';
+@import 'structure';
+@import 'gallery';
+@import 'gallery-controls';
+@import 'gallery-view';
 
 label, input {
 	color: #bbb;
@@ -16,10 +19,6 @@ figcaption {
 	color: #aaa;
 }
 
-.nav-wrapper {
-	background-color: @blue-grey;
-}
-
 .brand-logo img {
 	width:190px;
 	vertical-align: middle;
@@ -28,8 +27,6 @@ figcaption {
 		margin-left:20px;
 	}
 }
-
-
 
 #photoswipe-container {
 	position: relative;
@@ -49,7 +46,7 @@ figcaption {
 
 .metadata {
 
-	background-color: @grey-lead;
+	background-color: $grey-lead;
 
 	.input-field input {
 		margin: 0 !important;

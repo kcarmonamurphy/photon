@@ -1,5 +1,9 @@
+#gallery {
+	display: flex;
+	flex-flow: column;
+}
+
 .gallery-view {
-	background-color: @profound-grey;
 	padding:0;
 	height:100%;
 	overflow-y: scroll;
@@ -25,5 +29,5 @@
 }
 
 [data-figure-type="image"] img {
-	border: 1px solid @light-blue;
+	border: 1px solid $light-blue;
 }
