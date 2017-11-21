@@ -1,12 +1,12 @@
 import Component from '@ember/component';
-import { computed } from  '@ember/object';
+import { inject as service } from '@ember/service';
 
 export default Component.extend({
 
     classNames: ['gallery-view', 'grey', 'darken-4'],
 
-    websockets: Ember.inject.service(),
-    store: Ember.inject.service(),
+    websockets: service(),
+    store: service(),
 
     socketRef: null,
 

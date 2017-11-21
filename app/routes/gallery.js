@@ -1,5 +1,4 @@
 import Route from '@ember/routing/route';
-import { computed } from '@ember/object';
 
 export default Route.extend({
 
@@ -10,7 +9,7 @@ export default Route.extend({
         }
     },
 
-    model(params) {
+    model() {
         return {
             'gallery-items': this.get('store').peekAll('gallery-item')
         }

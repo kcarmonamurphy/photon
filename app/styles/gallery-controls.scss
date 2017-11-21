@@ -1,18 +1,24 @@
-.gallery-controls .nav-wrapper {
-    display: flex;
+// Gallery Controls
 
-    form {
-        flex: 1 auto; 
-
-        .label-icon i {
-            margin-top: -10px;
-        } 
-    }
-}
-
+// Variables
 $gallery-controls-height: 50px;
 
 .gallery-controls {
+
+    // Layout
+    .nav-wrapper {
+        display: flex;
+
+        form {
+            flex: 1 auto; 
+
+            .label-icon i {
+                margin-top: -10px;
+            } 
+        }
+    }
+
+    // Navvar Height
     nav {
         height: $gallery-controls-height;
         line-height: $gallery-controls-height;
@@ -39,8 +45,23 @@ $gallery-controls-height: 50px;
         }
     }
 
+    // Search Field
     .input-field input[type=search]:focus {
-        @extend .blue-grey, .darken-4;
+        @extend .grey, .darken-4, .white-text;
+    }
+
+    .input-field input[type=search]:focus + label i, .input-field input[type=search]:focus ~ .mdi-navigation-close, .input-field input[type=search]:focus ~ .material-icons {
+        @extend .white-text;
+    }
+
+    // Navbar Buttons
+    nav ul a:hover {
+        @extend .teal;
+    }
+
+    // Dropdown Content
+    .dropdown-content li > a, .dropdown-content li > span {
+        @extend .grey, .darken-3, .white-text;
     }
 }
 

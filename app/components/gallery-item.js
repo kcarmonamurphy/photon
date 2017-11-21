@@ -1,4 +1,5 @@
 import Component from '@ember/component';
+import { computed } from  '@ember/object';
 
 export default Component.extend({
 
@@ -10,7 +11,7 @@ export default Component.extend({
 	itemtype: 'http://schema.org/ImageObject',
 	itemscope: '',
 
-	isImage: Ember.computed('gallery-item', function() {
+	isImage: computed('gallery-item', function() {
 		let galleryItemType = this.get('gallery-item.type');
         return (galleryItemType == 'image') ? true : false;
     }),

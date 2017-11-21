@@ -12,12 +12,24 @@
 	        </div>
       	</form>
         <ul class="grey darken-4">
-            <li><a href="sass.html"><i class="material-icons">search</i></a></li>
-            <li><a href="badges.html"><i class="material-icons">view_module</i></a></li>
-            <li><a href="collapsible.html"><i class="material-icons">refresh</i></a></li>
-            <li><a href="mobile.html"><i class="material-icons">more_vert</i></a></li>
+
+            <li><a href="#" class="dropdown-button" data-activates="sort-dropdown">Sort by Name<i class="material-icons right">arrow_drop_down</i></a></li>
+            <li><a href="#"><i class="material-icons">sort_by_alpha</i></a></li>
+
+            <li><a href="#"><i class="material-icons">add_a_photo</i></a></li>
+            <li><a href="#"><i class="material-icons">create_new_folder</i></a></li>
+
+            <li><a href="#"><i class="material-icons">zoom_in</i></a></li>
+            <li><a href="#"><i class="material-icons">zoom_out</i></a></li>
+            <li><a href="#"><i class="material-icons">more_vert</i></a></li>
         </ul>
     </div>
 </nav>
+
+<ul id="sort-dropdown" class="dropdown-content">
+  <li><a href="#">one</a></li>
+  <li><a href="#">two</a></li>
+  <li><a href="#">three</a></li>
+</ul>
 
 {{yield}}
