@@ -3,8 +3,12 @@ import { computed } from  '@ember/object';
 
 export default Controller.extend({
 
-    queryParams: ['search'],
+    queryParams: ['search', 'sortby', 'direction'],
     search: "",
+    sortby: "name",
+    direction: "asc",
+
+    sortableAttributes: ['name', 'size'],
 
     filteredGalleryItems: computed.filter('model.gallery-items', function(item, index, array) {
         let searchInput = this.get('search');
@@ -12,7 +16,23 @@ export default Controller.extend({
         return item.get('name').indexOf(searchInput) > -1;
     }),
 
-    sortDefinition: ['type:asc', 'name:asc'],
-    sortedAndFilteredGalleryItems: computed.sort('filteredGalleryItems', 'sortDefinition')
+    sortAttribute: 'name',
+    sortDirection: 'asc',
+
+    sortDefinition: computed('sortAttribute', 'sortDirection', function() {
+        let typeDef = `type:${this.get('sortDirection')}`;
+        let attrDef = `${this.get('sortAttribute')}:${this.get('sortDirection')}`;
+        return [typeDef, attrDef];
+    }),
+    sortedAndFilteredGalleryItems: computed.sort('filteredGalleryItems', 'sortDefinition'),
+
+    actions: {
+        sortGalleryItemsByAttribute(attribute) {
+            this.set('sortAttribute', attribute);
+        },
+        flipSortDirection() {
+
+        }
+    }
 
 });

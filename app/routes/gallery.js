@@ -6,6 +6,14 @@ export default Route.extend({
         search: {
           refreshModel: true,
           replace: true
+        },
+        sortby: {
+          refreshModel: true,
+          replace: true
+        },
+        direction: {
+          refreshModel: true,
+          replace: true
         }
     },
 

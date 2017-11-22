@@ -13,7 +13,7 @@
       	</form>
         <ul class="grey darken-4">
 
-            <li><a href="#" class="dropdown-button" data-activates="sort-dropdown">Sort by Name<i class="material-icons right">arrow_drop_down</i></a></li>
+            <li><a href="#" class="dropdown-button" data-activates="sort-dropdown">Sort by {{currentSortAttribute}}<i class="material-icons right">arrow_drop_down</i></a></li>
             <li><a href="#"><i class="material-icons">sort_by_alpha</i></a></li>
 
             <li><a href="#"><i class="material-icons">add_a_photo</i></a></li>
@@ -27,9 +27,9 @@
 </nav>
 
 <ul id="sort-dropdown" class="dropdown-content">
-  <li><a href="#">one</a></li>
-  <li><a href="#">two</a></li>
-  <li><a href="#">three</a></li>
+    {{#each sortableAttributes as |attribute|}}
+        <li><a {{action "sortDropdownModified" attribute}}>{{attribute}}</a></li>
+    {{/each}}
 </ul>
 
 {{yield}}

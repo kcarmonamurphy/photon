@@ -3,10 +3,20 @@ import $ from 'jquery';
 
 export default Component.extend({
 
-	classNames: ['gallery-controls', 'grey', 'darken-4'],
+	classNames: ['gallery-controls'],
 
     didInsertElement() {
         $(".dropdown-button").dropdown();
+    },
+
+    actions: {
+        sortDropdownModified(attribute) {
+            this.get('sortGalleryItemsByAttribute')(attribute);
+            this.set('currentSortAttribute', attribute);
+        },
+        flipSortDirection() {
+            this.get('flipSortDirection')();
+        }
     }
 
 });

@@ -3,6 +3,10 @@
 
 	{{ gallery-controls 
 		search=search
+        sortableAttributes=sortableAttributes
+        sortGalleryItemsByAttribute=(action "sortGalleryItemsByAttribute")
+        flipSortDirection=(action "flipSortDirection")
+        currentSortAttribute=sortby
 	}}
 
     {{ gallery-view
