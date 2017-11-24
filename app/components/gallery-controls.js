@@ -12,10 +12,15 @@ export default Component.extend({
     actions: {
         sortDropdownModified(attribute) {
             this.get('sortGalleryItemsByAttribute')(attribute);
-            this.set('currentSortAttribute', attribute);
         },
         flipSortDirection() {
             this.get('flipSortDirection')();
+        },
+        magnifyZoomLevel() {
+            this.get('magnifyZoomLevel')();
+        },
+        demagnifyZoomLevel() {
+            this.get('demagnifyZoomLevel')();
         }
     }
 
