@@ -38,31 +38,21 @@ export default Controller.extend({
     lastHighlightedObject: null,
     galleryItemsHighlighter: computed('sortedAndFilteredGalleryItems', function() {
         let array = this.get('sortedAndFilteredGalleryItems'),
-            currentIndex = array.indexOf(array.findBy('active', true)),
+            activeItem = array.findBy('active', true);
+
+        let currentIndex = array.indexOf(activeItem),
             lastHighlightedIndex = array.indexOf(this.get('lastHighlightedObject')),
             galleryItem;
 
         if (lastHighlightedIndex != -1) {
-            this.get('model.gallery-items').forEach(function(galleryItem) {
-                galleryItem.set('active', undefined);
-            });
-            galleryItem = this.get('store').peekRecord(
-                'gallery-item', 
-                array.objectAt(lastHighlightedIndex).id
-            );
-            galleryItem.set('active', true);
+            this.deActivateAllGalleryItems();
+            this.getGalleryItemFromStore(array, lastHighlightedIndex).set('active', true);
         }
-        
-        else if (currentIndex == -1 && array.length != 0) {
-            this.get('model.gallery-items').forEach(function(galleryItem) {
-                galleryItem.set('active', undefined);
-            });
-            galleryItem = this.get('store').peekRecord(
-                'gallery-item', 
-                array.objectAt(0).id
-            );
-            galleryItem.set('active', true);
+        else if (currentIndex == -1 && array.length) {
+            this.deActivateAllGalleryItems();
+            this.getGalleryItemFromStore(array, 0).set('active', true);
         }
+
         return array;
     }),
 
@@ -76,6 +66,19 @@ export default Controller.extend({
     //     let array = this.get('sortedAndFilteredGalleryItems');
     //     return array.indexOf(array.findBy('active', true));
     // }),
+
+    getGalleryItemFromStore(array, index) {
+        return this.get('store').peekRecord(
+            'gallery-item', 
+            array.objectAt(index).id
+        );
+    },
+
+    deActivateAllGalleryItems() {
+        this.get('model.gallery-items').forEach(function(galleryItem) {
+            galleryItem.set('active', undefined);
+        });
+    },
 
     init() {
         let controller = this;
@@ -147,31 +150,24 @@ export default Controller.extend({
             this.send('selectItem', "prev", this.get('zoomLevel'));
         },
         selectItem(direction, number) {
-            let array = this.get('galleryItemsHighlighter');
-            let currentIndex = array.indexOf(array.findBy('active', true));
-            let newIndex;
+            let array = this.get('galleryItemsHighlighter'),
+                activeItem = array.findBy('active', true);
 
-            if (direction == 'next') {
-                newIndex = currentIndex + number;
-            } else {
-                newIndex = currentIndex - number;
-            }
+            let currentIndex = array.indexOf(activeItem),
+                newIndex,
+                galleryItem;
+
+            let operator = (direction == 'next') ? '+' : '-';
+            newIndex = eval(`${currentIndex} ${operator} ${number}`);
 
             if (array.objectAt(newIndex) != undefined) {
-                let galleryItem = this.get('store').peekRecord(
-                    'gallery-item', 
-                    array.objectAt(currentIndex).id
-                );
-                galleryItem.set('active', undefined);
+                this.getGalleryItemFromStore(array, currentIndex).set('active', undefined);
 
-                galleryItem = this.get('store').peekRecord(
-                    'gallery-item', 
-                    array.objectAt(newIndex).id
-                );
+                galleryItem = this.getGalleryItemFromStore(array, newIndex);
                 galleryItem.set('active', true);
-
                 this.set('lastHighlightedObject', galleryItem);
             }
+            
         }
     }
 

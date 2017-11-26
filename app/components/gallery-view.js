@@ -13,7 +13,7 @@ export default Component.extend({
     didInsertElement() {
         this._super(...arguments);
 
-        const socket = this.get('websockets').socketFor('ws://localhost:4567/gallery/4.jpg');
+        const socket = this.get('websockets').socketFor('ws://localhost:4567/gallery/');
 
         socket.on('open', this.myOpenHandler, this);
         socket.on('message', this.myMessageHandler, this);
@@ -53,7 +53,7 @@ export default Component.extend({
                         type: type,
                         size: size,
                         uri: uri,
-                        active: active
+                        active: undefined
                     },
                     relationships: {}
                 }]
