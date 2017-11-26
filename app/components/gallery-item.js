@@ -15,14 +15,6 @@ export default Component.extend({
 	isImage: computed('gallery-item', function() {
 		let galleryItemType = this.get('gallery-item.type');
         return (galleryItemType == 'image') ? true : false;
-    }),
-
-    didInsertElement() {
-        this._super(...arguments);
-    },
-
-    didUpdateAttrs() {
-        console.log('attr updated');
-    }
+    })
 
 });

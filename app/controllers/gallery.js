@@ -102,27 +102,41 @@ export default Controller.extend({
             }
         },
         selectItemRight() {
+            this.send('selectItem', "next", 1);
+        },
+        selectItemLeft() {
+            this.send('selectItem', "prev", 1);
+        },
+        selectItemDown() {
+            this.send('selectItem', "next", 4);
+        },
+        selectItemUp() {
+            this.send('selectItem', "prev", 4);
+        },
+        selectItem(direction, number) {
             let array = this.get('sortedAndFilteredGalleryItems');
-            let currentIndex = this.get('currentIndex');
-
-
-            // let galleryItem = array.objectAt(currentIndex+1);
-            // galleryItem.set('active', undefined);
-            // galleryItem.notifyPropertyChange('active');
+            let currentIndex = array.indexOf(array.findBy('active', true));
 
             let galleryItem = this.get('store').peekRecord(
                 'gallery-item', 
                 array.objectAt(currentIndex).id
             );
-            galleryItem.set('active', false);
+            galleryItem.set('active', undefined);
 
-            // let nextGalleryItem = this.get('store').peekRecord(
-            //     'gallery-item', 
-            //     array.objectAt(currentIndex+1).id
-            // );
-            // nextGalleryItem.set('active', true);
+            if (direction == 'next') {
+                currentIndex += number;
+            } else {
+                currentIndex -= number;
+            }
+
+            console.log(currentIndex);
+
+            let newGalleryItem = this.get('store').peekRecord(
+                'gallery-item', 
+                array.objectAt(currentIndex).id
+            );
+            newGalleryItem.set('active', true);
         }
-
     }
 
 });
