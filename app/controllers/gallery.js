@@ -35,14 +35,47 @@ export default Controller.extend({
     }),
     sortedAndFilteredGalleryItems: computed.sort('filteredGalleryItems', 'sortDefinition'),
 
+    lastHighlightedObject: null,
+    galleryItemsHighlighter: computed('sortedAndFilteredGalleryItems', function() {
+        let array = this.get('sortedAndFilteredGalleryItems'),
+            currentIndex = array.indexOf(array.findBy('active', true)),
+            lastHighlightedIndex = array.indexOf(this.get('lastHighlightedObject')),
+            galleryItem;
+
+        if (lastHighlightedIndex != -1) {
+            this.get('model.gallery-items').forEach(function(galleryItem) {
+                galleryItem.set('active', undefined);
+            });
+            galleryItem = this.get('store').peekRecord(
+                'gallery-item', 
+                array.objectAt(lastHighlightedIndex).id
+            );
+            galleryItem.set('active', true);
+        }
+        
+        else if (currentIndex == -1 && array.length != 0) {
+            this.get('model.gallery-items').forEach(function(galleryItem) {
+                galleryItem.set('active', undefined);
+            });
+            galleryItem = this.get('store').peekRecord(
+                'gallery-item', 
+                array.objectAt(0).id
+            );
+            galleryItem.set('active', true);
+        }
+        return array;
+    }),
+
     zoomClass: computed('zoomLevel', function() {
         return `flex-${this.get('zoomLevel')}`;
     }),
 
-    currentIndex: computed('sortedAndFilteredGalleryItems', function() {
-        let array = this.get('sortedAndFilteredGalleryItems');
-        return array.indexOf(array.findBy('active', true));
-    }),
+    galleryItemsFinal: alias('galleryItemsHighlighter'),
+
+    // currentIndex: computed('sortedAndFilteredGalleryItems', function() {
+    //     let array = this.get('sortedAndFilteredGalleryItems');
+    //     return array.indexOf(array.findBy('active', true));
+    // }),
 
     init() {
         let controller = this;
@@ -108,34 +141,37 @@ export default Controller.extend({
             this.send('selectItem', "prev", 1);
         },
         selectItemDown() {
-            this.send('selectItem', "next", 4);
+            this.send('selectItem', "next", this.get('zoomLevel'));
         },
         selectItemUp() {
-            this.send('selectItem', "prev", 4);
+            this.send('selectItem', "prev", this.get('zoomLevel'));
         },
         selectItem(direction, number) {
-            let array = this.get('sortedAndFilteredGalleryItems');
+            let array = this.get('galleryItemsHighlighter');
             let currentIndex = array.indexOf(array.findBy('active', true));
-
-            let galleryItem = this.get('store').peekRecord(
-                'gallery-item', 
-                array.objectAt(currentIndex).id
-            );
-            galleryItem.set('active', undefined);
+            let newIndex;
 
             if (direction == 'next') {
-                currentIndex += number;
+                newIndex = currentIndex + number;
             } else {
-                currentIndex -= number;
+                newIndex = currentIndex - number;
             }
 
-            console.log(currentIndex);
+            if (array.objectAt(newIndex) != undefined) {
+                let galleryItem = this.get('store').peekRecord(
+                    'gallery-item', 
+                    array.objectAt(currentIndex).id
+                );
+                galleryItem.set('active', undefined);
 
-            let newGalleryItem = this.get('store').peekRecord(
-                'gallery-item', 
-                array.objectAt(currentIndex).id
-            );
-            newGalleryItem.set('active', true);
+                galleryItem = this.get('store').peekRecord(
+                    'gallery-item', 
+                    array.objectAt(newIndex).id
+                );
+                galleryItem.set('active', true);
+
+                this.set('lastHighlightedObject', galleryItem);
+            }
         }
     }
 
