@@ -13,7 +13,7 @@ export default Component.extend({
     didInsertElement() {
         this._super(...arguments);
 
-        const socket = this.get('websockets').socketFor('ws://localhost:4567/gallery/');
+        const socket = this.get('websockets').socketFor('ws://localhost:4567/gallery/4.jpg');
 
         socket.on('open', this.myOpenHandler, this);
         socket.on('message', this.myMessageHandler, this);
@@ -40,24 +40,40 @@ export default Component.extend({
 
     myMessageHandler(event) {
         
-        let { name, description, type, size, uri } = JSON.parse(event.data);
+        let { name, description, type, size, uri, active } = JSON.parse(event.data);
 
-        console.log(name);
-
-        this.get('store').push({
-            data: [{
-                id: name,
-                type: 'gallery-item',
-                attributes: {
-                    name: name,
-                    description: description,
-                    type: type,
-                    size: size,
-                    uri: uri,
-                },
-                relationships: {}
-            }]
-        });
+        if (active) {
+            this.get('store').push({
+                data: [{
+                    id: name,
+                    type: 'gallery-item',
+                    attributes: {
+                        name: name,
+                        description: description,
+                        type: type,
+                        size: size,
+                        uri: uri,
+                        active: active
+                    },
+                    relationships: {}
+                }]
+            });
+        } else {
+            this.get('store').push({
+                data: [{
+                    id: name,
+                    type: 'gallery-item',
+                    attributes: {
+                        name: name,
+                        description: description,
+                        type: type,
+                        size: size,
+                        uri: uri,
+                    },
+                    relationships: {}
+                }]
+            });
+        }
     },
 
     myCloseHandler(event) {

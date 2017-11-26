@@ -25,6 +25,7 @@ module.exports = function(defaults) {
   });
 
   app.import('node_modules/materialize-css/dist/js/materialize.js');
+  app.import('vendor/dmauro-keypress/keypress.js');
 
   let materializeRobotoFont = new Funnel('node_modules/materialize-css/dist/fonts/roboto', {
       srcDir: '/',

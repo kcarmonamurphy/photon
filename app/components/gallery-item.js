@@ -5,6 +5,7 @@ export default Component.extend({
 
 	tagName: 'figure',
 	classNames: ['gallery-item'],
+    classNameBindings: ['gallery-item.active:active'],
 	attributeBindings: ['itemprop', 'itemtype', 'itemscope'],
 
 	itemprop: 'associatedMedia',
@@ -19,5 +20,9 @@ export default Component.extend({
     didInsertElement() {
         this._super(...arguments);
     },
+
+    didUpdateAttrs() {
+        console.log('attr updated');
+    }
 
 });

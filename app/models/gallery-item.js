@@ -5,5 +5,6 @@ export default DS.Model.extend({
     description: DS.attr('description'),
     type: DS.attr('string'),
     uri: DS.attr('string'),
-    size: DS.attr('string')
+    size: DS.attr('string'),
+    active: DS.attr('boolean'),
 });
