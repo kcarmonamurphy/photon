@@ -4,6 +4,8 @@
     {{#each galleryItemsFinal as |gallery-item|}}
         {{ gallery-item 
             gallery-item=gallery-item
+            galleryItemClick=(action "galleryItemClick")
+            galleryItemDoubleClick=(action "galleryItemDoubleClick")
         }}
     {{/each}}
 

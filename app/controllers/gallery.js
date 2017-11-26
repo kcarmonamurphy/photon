@@ -149,6 +149,19 @@ export default Controller.extend({
         selectItemUp() {
             this.send('selectItem', "prev", this.get('zoomLevel'));
         },
+        galleryItemClick(galleryItem) {
+            let array = this.get('galleryItemsHighlighter'),
+                newIndex = array.indexOf(galleryItem);
+
+            this.deActivateAllGalleryItems();
+
+            galleryItem = this.getGalleryItemFromStore(array, newIndex);
+            galleryItem.set('active', true);
+            this.set('lastHighlightedObject', galleryItem);
+        },
+        galleryItemDoubleClick(galleryItem) {
+
+        },
         selectItem(direction, number) {
             let array = this.get('galleryItemsHighlighter'),
                 activeItem = array.findBy('active', true);

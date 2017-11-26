@@ -78,6 +78,15 @@ export default Component.extend({
 
     myCloseHandler(event) {
         console.log(`On close event has been called: ${event}`);
+    },
+
+    actions: {
+        galleryItemClick(galleryItem) {
+            this.get('galleryItemClick')(galleryItem);
+        },
+        galleryItemDoubleClick(galleryItem) {
+            this.get('galleryItemDoubleClick')(galleryItem);
+        }
     }
 
 });
