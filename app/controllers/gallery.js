@@ -80,6 +80,13 @@ export default Controller.extend({
         });
     },
 
+    getActiveGalleryItem() {
+        return this.get('galleryItemsHighlighter').findBy(
+            'active',
+            true
+        );
+    },
+
     init() {
         let controller = this;
         let listener = new window.keypress.Listener();
@@ -109,7 +116,7 @@ export default Controller.extend({
         });
 
         listener.simple_combo("enter", function() {
-            console.log(controller.get('currentIndex'));
+            controller.send('enter');
         });
     },
 
@@ -160,7 +167,13 @@ export default Controller.extend({
             this.set('lastHighlightedObject', galleryItem);
         },
         galleryItemDoubleClick(galleryItem) {
-
+            this.transitionToRoute('gallery.resource', galleryItem.id);
+        },
+        enter() {
+            this.transitionToRoute(
+                'gallery.resource',
+                this.getActiveGalleryItem().uri
+            );
         },
         selectItem(direction, number) {
             let array = this.get('galleryItemsHighlighter'),
