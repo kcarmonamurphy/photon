@@ -166,14 +166,13 @@ export default Controller.extend({
             galleryItem.set('active', true);
             this.set('lastHighlightedObject', galleryItem);
         },
-        galleryItemDoubleClick(galleryItem) {
-            this.transitionToRoute('gallery.resource', galleryItem.id);
+        galleryItemDoubleClick() {
+            let id = this.getActiveGalleryItem().id;
+            this.transitionToRoute('gallery.resource', id);
         },
         enter() {
-            this.transitionToRoute(
-                'gallery.resource',
-                this.getActiveGalleryItem().uri
-            );
+            let id = this.getActiveGalleryItem().id;
+            this.transitionToRoute('gallery.resource', id);
         },
         selectItem(direction, number) {
             let array = this.get('galleryItemsHighlighter'),

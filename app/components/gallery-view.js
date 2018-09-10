@@ -84,8 +84,8 @@ export default Component.extend({
         galleryItemClick(galleryItem) {
             this.get('galleryItemClick')(galleryItem);
         },
-        galleryItemDoubleClick(galleryItem) {
-            this.get('galleryItemDoubleClick')(galleryItem);
+        galleryItemDoubleClick() {
+            this.get('galleryItemDoubleClick')();
         }
     }
 

@@ -1,5 +1,5 @@
 <div class="selection-boundary" data-figure-type="{{gallery-item.type}}">
-    <a {{action 'galleryItemClick' gallery-item}} {{action 'galleryItemDoubleClick' gallery-item on="doubleClick"}} itemprop="contentUrl" href="{{raw-uri gallery-item.uri}}">
+    <a {{action 'galleryItemClick' gallery-item}} {{action 'galleryItemDoubleClick' on="doubleClick"}} itemprop="contentUrl" href="{{raw-uri gallery-item.uri}}">
     	{{#if isImage }}
         	<img itemprop="thumbnail" src="{{thumbnail-uri gallery-item.uri}}?thumbnail=1"/>
         {{else}}
