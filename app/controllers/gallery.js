@@ -11,17 +11,17 @@ export default Controller.extend({
     // query parameters
     queryParams: ['search', 'sortby', 'direction', 'zoom'],
     search: "",
-    sortby: "name",
+    sortby: "resource_name",
     direction: "asc",
     zoom: 4,
 
-    sortableAttributes: ['name', 'size'],
+    sortableAttributes: ['resource_name', 'size'],
     zoomLevelsArray: [1,2,3,4,5,6,8,10],
 
     filteredGalleryItems: computed.filter('model.gallery-items', function(item, index, array) {
         let searchInput = this.get('search');
 
-        return item.get('name').indexOf(searchInput) > -1;
+        return item.get('resource_name').indexOf(searchInput) > -1;
     }),
 
     sortAttribute: alias('sortby'),

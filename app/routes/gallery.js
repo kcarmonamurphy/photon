@@ -22,7 +22,7 @@ export default Route.extend({
 
     model() {
         return {
-            'gallery-items': this.get('store').peekAll('gallery-item')
+            'gallery-items': this.get('store').findAll('gallery-item')
         }
     }
 });
