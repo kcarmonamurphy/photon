@@ -13,17 +13,17 @@ export default Component.extend({
 	itemscope: '',
 
 	isImage: computed('gallery-item', function() {
-		let galleryItemType = this.get('gallery-item.type');
-        return (galleryItemType == 'image') ? true : false;
-    }),
+    let galleryItemType = this.get('gallery-item.type');
+    return (galleryItemType == 'image') ? true : false;
+  }),
 
-    actions: {
-        galleryItemClick(galleryItem) {
-            this.get('galleryItemClick')(galleryItem);
-        },
-        galleryItemDoubleClick() {
-            this.get('galleryItemDoubleClick')();
-        }
-    }
+  actions: {
+      galleryItemClick(galleryItem) {
+          this.get('galleryItemClick')(galleryItem);
+      },
+      galleryItemDoubleClick() {
+          this.get('galleryItemDoubleClick')();
+      }
+  }
 
 });

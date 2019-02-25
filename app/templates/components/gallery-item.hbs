@@ -1,13 +1,16 @@
 <div class="selection-boundary" data-figure-type="{{gallery-item.type}}">
-    <a {{action 'galleryItemClick' gallery-item}} {{action 'galleryItemDoubleClick' on="doubleClick"}} itemprop="contentUrl" href="{{raw-uri gallery-item.uri}}">
-    	{{#if isImage }}
-        	<img itemprop="thumbnail" src="{{thumbnail-uri gallery-item.uri}}?thumbnail=1"/>
-        {{else}}
-    		<img itemprop="thumbnail" src="/assets/images/folder.png"/>
-    	{{/if}}
-    </a>
 
-    <figcaption itemprop="caption description">{{gallery-item.name}}</figcaption>
+	<a {{action 'galleryItemClick' gallery-item}} {{action 'galleryItemDoubleClick' on="doubleClick"}} itemprop="contentUrl" href="{{gallery-item.full_image_uri}}">
+
+		{{#if isImage }}
+			<img itemprop="thumbnail" src="{{gallery-item.thumbnail_uri}}"/>
+		{{else}}
+			<img itemprop="thumbnail" src="/assets/images/folder.png"/>
+		{{/if}}
+
+	</a>
+
+	<figcaption itemprop="caption description">{{gallery-item.resource_name}}</figcaption>
 </div>
 
 {{yield}}

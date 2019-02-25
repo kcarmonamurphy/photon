@@ -10,5 +10,7 @@ export default DS.Model.extend({
     'name': DS.attr('string'),
     'last_modified': DS.attr('string'),
     'description': DS.attr('string'),
-    'size': DS.attr('string')
+    'size': DS.attr('string'),
+    'thumbnail_uri': DS.attr('string'),
+    'full_image_uri': DS.attr('string')
 });
